@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-*{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+
+body {
   background: rgb(8, 8, 15);
 }
-.container{
+
+.container {
   max-width: 1320px;
   width: 100%;
   padding-left: 12px;
@@ -15,16 +18,211 @@ body{
   margin-right: auto;
   margin-left: auto;
 }
-ul{
+
+ul {
   list-style: none;
 }
-input,select,textarea{
+
+input,
+select,
+textarea {
   outline: none;
 }
-button{
+
+button {
   border: none;
   cursor: pointer;
 }
-a{
+
+a {
   text-decoration: none;
+}
+table {
+  width: 100%;
+  margin-top: 40px;
+}
+table th {
+  border-bottom: 3px solid #D2D2D7;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+table td {
+  border-bottom: 1px solid #D2D2D7;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: auto;
+}
+
+table td::-webkit-scrollbar {
+  height: 8px;
+}
+
+table td::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+
+table td::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+.brand {
+  color: #ffffff;
+  font-family: "Inter";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.brand span {
+  color: #0000ff;
+  font-family: "Inter";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.editBtn,.deleteBtn {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #D2D2D7;
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.editBtn {
+  color: #0000ff;
+  border: 1px solid #4f4fda;
+}
+
+.deleteBtn {
+  color: #ff0000;
+  border: 1px solid #c36161;
+}
+
+.blueBtn {
+  padding: 6px 16px;
+  background: #0000ff;
+  color: #fff;
+  font-family: "Inter";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  border-radius: 4px;
+}
+
+.whiteBtn {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #D2D2D7;
+  font-size: 24px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  cursor: pointer;
+}
+
+.whiteBtn span {
+  text-align: center;
+  font-family: "Inter";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #D2D2D7;
+  font-size: 24px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.form input,
+.form select,
+.form textarea {
+  padding: 15px;
+  border-radius: 4px;
+  color: #000;
+  font-family: "Inter";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  -webkit-appearance: none;
+}
+.form textarea{
+  height: 60px;
+}
+
+.form div {
+  display: flex;
+  gap: 16px;
+}
+
+.form div input {
+  width: 100%;
+}
+.form__title {
+  color: #eeeefa;
+  font-family: "Inter";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 30px;
+}
+
+.disabled {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.enabled {
+  position: absolute;
+  top: 110%;
+  right: 0px;
+  height: 200px;
+  width: 300px;
+  border-radius: 12px;
+  background: #000000;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  z-index: 5;
 }

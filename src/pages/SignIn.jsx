@@ -1,78 +1,82 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { isValidEmail} from '../helpers';
-import { signIn} from '../store/employee';
+import { isValidEmail } from '../helpers';
+import { signIn } from '../store/employee';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import styles from './pages.module.css'
+import styles from './pages.module.css';
 
 const initialData = {
-  email: "",
-  password: "",
-  type: "simple"
-}
+  email: '',
+  password: '',
+  type: 'simple',
+};
 
 function SignIn() {
-  const navigate = useNavigate()
-  const [employee, setEmployee] = useState(initialData);
-  const employees = useSelector((state) => state.employee[employee.type])
-  console.log(employees);
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(initialData);
+  const employees = useSelector((state) => state.employee[formData.type]);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
-    setEmployee(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
+    setFormData((prevFormData) => ({ ...prevFormData, [e.target.name]: e.target.value }));
   };
+
   const onSubmit = (e) => {
-    e.preventDefault()
-    const checkPerson = isValidEmail(employee.email) && 
-    employees.some((user) => user.password === employee.password) && 
-    employees.some((user) => user.type === employee.type) && 
-    employees.some((user) => user.email === employee.email)
-    if (checkPerson) {
-      // console.log(employees.some((user) => user.type === employee.type));
-      // let loggedPerson = employees.findIndex(user => user.email === employee.email)
-      let loggedPerson = employees.filter(user => user.email === employee.email)
-      navigate('/')
-      setEmployee(initialData);
-      dispatch(signIn(loggedPerson))
+    e.preventDefault();
+    
+    const isValidSignIn = isValidEmail(formData.email) &&
+      employees.some((user) => user.password === formData.password) &&
+      employees.some((user) => user.type === formData.type) &&
+      employees.some((user) => user.email === formData.email);
+
+    if (isValidSignIn) {
+      const loggedPerson = employees.filter((user) => user.email === formData.email);
+      navigate('/');
+      setFormData(initialData);
+      dispatch(signIn(loggedPerson));
     } else {
-      toast.info("Something is wrong!!!")
+      toast.info('Invalid credentials. Please try again.');
     }
   };
+
   return (
     <div className={styles.sign}>
       <div className={styles.sign__block}>
-        <h2 className={styles.sign__brand}><span>Prime </span>Tech</h2>
-        <p className={styles.sign__title}>Sign In</p>
-        <form onSubmit={onSubmit} className={styles.sign__form}>
+        <h2 className="brand">
+          <span>Prime </span>Tech
+        </h2>
+        <p className="form__title">Sign In</p>
+        <form onSubmit={onSubmit} className="form">
           <input
             type="text"
-            placeholder='Email Address *'
-            name='email'
-            value={employee.email}
-            onChange={handleInputChange}
-            required />
-          <input
-            type="password"
-            placeholder='Password *'
-            name='password'
-            value={employee.password}
+            placeholder="Email Address *"
+            name="email"
+            value={formData.email}
             onChange={handleInputChange}
             required
           />
-          <select name='type' value={employee.type} onChange={handleInputChange} className={styles.sign__select}>
+          <input
+            type="password"
+            placeholder="Password *"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <select name="type" value={formData.type} onChange={handleInputChange}>
             <option value="simple">Simple User</option>
             <option value="admin">Admin</option>
             <option value="super">Super Admin</option>
           </select>
-          <button type='submit' className={styles.sign__submit}>Sign In</button>
+          <button type="submit" className="blueBtn">Sign In</button>
         </form>
         <Link to="/signup" className={styles.sign__link}>Don't have an account? Sign Up</Link>
       </div>
       <ToastContainer />
     </div>
-  )
+  );
 }
 
-export default SignIn
+export default SignIn;

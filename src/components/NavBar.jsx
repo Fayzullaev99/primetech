@@ -21,20 +21,20 @@ function NavBar() {
   return (
     <header className={styles.header}>
       <div className={classNames(styles.header__nav, 'container')}>
-        <Link to={"/"} className={styles.header__brand}><span>Prime</span> Tech</Link>
+        <Link to={"/"} className="brand"><span>Prime</span> Tech</Link>
         <div className={styles.header__list}>
-          <div className={styles.header__add} onClick={() =>handleAddUser()}>
+          <div className="whiteBtn" onClick={() =>handleAddUser()}>
             <HiOutlinePlus />
             <span>User</span>
           </div>
-          <div className={styles.header__user} onClick={() => setShowAccount(!showAccount)}>
+          <div className="whiteBtn" onClick={() => setShowAccount(!showAccount)}>
             <FiUser />
           </div>
-          <div className={showAccount ? styles.header__account_active : styles.header__account}>
-            <button className={styles.add__close} onClick={() => setShowAccount(false)}><MdClear /></button>
-            <h3 className={styles.header__name}>{loggedUser[0]?.name || loggedUser.name}</h3>
+          <div className={showAccount ? "enabled" : "disabled"}>
+            <button className="closeBtn" onClick={() => setShowAccount(false)}><MdClear /></button>
+            <h3 className={styles.header__name}>{loggedUser[0]?.firstName || loggedUser.firstName}</h3>
             <a href={`mailto:${loggedUser[0]?.email || loggedUser.email}`} className={styles.header__email}>{loggedUser[0]?.email || loggedUser.email}</a>
-            <button className={styles.header__signout} onClick={()=>dispatch(signOut())}>Sign Out</button>
+            <button className="blueBtn" onClick={()=>dispatch(signOut())}>Sign Out</button>
           </div>
         </div>
       </div>

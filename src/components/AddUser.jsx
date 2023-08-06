@@ -8,11 +8,11 @@ import { formatDate, isValidEmail, isValidName, isValidPhoneNumber } from '../he
 import { addUser, editUser } from '../store/employee';
 const initialData = {
     name: "",
-    family: "",
+    lastname: "",
     state: "nomalum",
     email: "",
     address: "",
-    phone: "",
+    phoneNumber: "",
     text: ""
 }
 function AddUser({ active, setActive, editedData }) {
@@ -33,7 +33,7 @@ function AddUser({ active, setActive, editedData }) {
     };
     const onSubmit = (e) => {
         e.preventDefault();
-        const isValid = isValidEmail(user.email) && isValidPhoneNumber(user.phone) && isValidName(user.name) && isValidName(user.family);
+        const isValid = isValidEmail(user.email) && isValidPhoneNumber(user.phoneNumber) && isValidName(user.name) && isValidName(user.lastname);
         if (isValid) {
           let newUser = {
             id: new Date().getTime().toString(),
@@ -56,10 +56,10 @@ function AddUser({ active, setActive, editedData }) {
     return (
         <div className={active ? styles.add__active : styles.add}>
             <div className={styles.add__block}>
-                <h2 className={styles.add__title}>User Info</h2>
-                <button className={styles.add__close} onClick={() => setActive(false)}><MdClear /></button>
-                <form onSubmit={onSubmit} className={styles.add__form}>
-                    <div className={styles.add__box}>
+                <h2 className="form__title">User Info</h2>
+                <button className="closeBtn" onClick={() => setActive(false)}><MdClear /></button>
+                <form onSubmit={onSubmit} className="form">
+                    <div>
                         <input
                             type="text"
                             placeholder='First Name *'
@@ -70,17 +70,16 @@ function AddUser({ active, setActive, editedData }) {
                         <input
                             type="text"
                             placeholder='Last Name *'
-                            name='family'
-                            value={user.family}
+                            name='lastname'
+                            value={user.lastname}
                             onChange={handleInputChange}
                             required />
                     </div>
-                    <div className={styles.add__box}>
+                    <div>
                         <select
                             name='state'
                             value={user.state}
-                            onChange={handleInputChange}
-                            className={styles.add__select}>
+                            onChange={handleInputChange}>
                             <option value="nomalum">Noma'lum</option>
                             <option value="sotuv">Sotuv</option>
                             <option value="uchrashuv">Uchrashuv</option>
@@ -110,11 +109,11 @@ function AddUser({ active, setActive, editedData }) {
                     <input
                         type="text"
                         placeholder='Phone Number *'
-                        name='phone'
-                        value={user.phone}
+                        name='phoneNumber'
+                        value={user.phoneNumber}
                         onChange={handleInputChange}
                         required />
-                    <button type='submit' className={styles.add__btn}>{editedData ? 'Save Changes' : 'Add User'}</button>
+                    <button type='submit' className="blueBtn">{editedData ? 'Save Changes' : 'Add User'}</button>
                 </form>
             </div>
             <ToastContainer />

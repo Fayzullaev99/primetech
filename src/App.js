@@ -5,12 +5,12 @@ import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
 import { useSelector } from 'react-redux'
 function App() {
-  const isLoggedIn = useSelector((state)=>state.employee.isLoggedIn.loggedIn)
+  const isLoggedIn = useSelector((state)=>state.employee.isLoggedIn)
   return (
     <BrowserRouter>
     <Routes>
       <Route path='/' element={
-        isLoggedIn ? <Home /> : <SignIn />
+        isLoggedIn.loggedIn ? <Home loggedType={isLoggedIn[0]?.type || isLoggedIn.type} /> : <SignIn />
       } />
       <Route path='/signin' element={<SignIn />} />
       <Route path='/signup' element={<SignUp />} />

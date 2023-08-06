@@ -1,9 +1,6 @@
 .page{
-    height: calc(100vh - 243px);
+    height: calc(100vh - 250px);
 }
-
-/* SignIn and SignUp */
-
 .sign {
     height: 100vh;
     display: flex;
@@ -11,29 +8,9 @@
     align-items: center;
     text-align: center;
 }
-
 .sign__block {
     width: 400px;
 }
-
-.sign__brand {
-    color: #ffffff;
-    font-family: "Inter";
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.sign__brand span {
-    color: #0000ff;
-    font-family: "Inter";
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px;
-}
-
 .sign__title {
     color: #eeeefa;
     font-family: "Inter";
@@ -42,44 +19,6 @@
     font-weight: 400;
     line-height: 32px;
     margin-bottom: 30px;
-}
-
-.sign__form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 30px;
-}
-.sign__form input,
-.sign__form select {
-    padding: 15px;
-    border-radius: 4px;
-    color: #000;
-    font-family: "Inter";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
-    -webkit-appearance: none;
-}
-
-.sign__fullname{
-    display: flex;
-    gap: 16px;
-}
-.sign__fullname input{
-    width: 190px;
-}
-.sign__submit {
-    padding: 6px 16px;
-    background: #0000ff;
-    color: #fff;
-    font-family: "Inter";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
-    border-radius: 4px;
 }
 .sign__link{
     display: block;

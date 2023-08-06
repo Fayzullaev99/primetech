@@ -3,14 +3,23 @@ import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
 import styles from './pages.module.css'
 import UserList from '../components/UserList'
+import AdminList from '../components/AdminList'
+import EmployeeList from '../components/EmployeeList'
 
-function Home() {
+function Home({ loggedType }) {
   return (
     <>
       <NavBar />
       <main>
         <div className={styles.page}>
-          <UserList />
+          {loggedType === 'super' ? (
+            <AdminList />
+          ) : loggedType === 'admin' ? (
+            <EmployeeList />
+          ) : (
+            <UserList />
+          )}
+
         </div>
       </main>
       <Footer />

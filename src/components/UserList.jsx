@@ -37,7 +37,7 @@ function UserList() {
             <div className="container">
                 <Filter allUsers={allUsers} users={users} setUsers={setUsers} />
                 <div className={styles.users__block}>
-                    <table className={styles.users__table}>
+                    <table className="table">
                         <thead className={styles.users__thead}>
                             <tr>
                                 <th>Id</th>
@@ -56,16 +56,16 @@ function UserList() {
                                 <tr>
                                     <td>{idx + 1}</td>
                                     <td>{user.name}</td>
-                                    <td>{user.phone}</td>
+                                    <td>{user.phoneNumber}</td>
                                     <td>{user.address}</td>
                                     <td>{user.timestamp}</td>
                                     <td>{user.state}</td>
                                     <td>{user.text}</td>
                                     <td>
-                                        <button onClick={() => handleEdit(user.id)} className={styles.users__edit}><FaPen /></button>
+                                        <button onClick={() => handleEdit(user.id)} className="editBtn"><FaPen /></button>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDelete(user.id)} className={styles.users__delete}><FaTrash /></button>
+                                        <button onClick={() => handleDelete(user.id)} className="deleteBtn"><FaTrash /></button>
                                     </td>
                                 </tr>
                             </tbody>

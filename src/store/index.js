@@ -3,7 +3,7 @@ import employee from './employee'
 
 const store = configureStore({
   reducer: {
-    employee
+    employee,
   },
 })
 
