@@ -73,7 +73,7 @@ export const formatDate = (date) => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
   
-    const formattedDate = `${hours}:${minutes}:${seconds} ${day}:${month}:${year}`;
+    const formattedDate = `${hours}:${minutes}:${seconds} ${day}.${month}.${year}`;
     return formattedDate;
   };
   

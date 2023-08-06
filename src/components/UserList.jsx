@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './component.module.css'
 import AddUser from './AddUser';
 import { deleteUser } from '../store/employee';
+import Filter from './Filter';
 
 function UserList() {
     const dispatch = useDispatch();
-    const [sort, setSort] = useState(false);
-    const [filter, setFilter] = useState(false);
     const [editingRowId, setEditingRowId] = useState(null);
     const [editedData, setEditedData] = useState(null);
     const [isEditMode, setIsEditMode] = useState(false);
@@ -16,8 +15,11 @@ function UserList() {
     const loggedPerson = useSelector((state) => state.employee[isLoggedIn[0]?.type || isLoggedIn?.type]);
     let personType = loggedPerson.filter((user) => user.type === isLoggedIn[0]?.type || isLoggedIn?.type)[0]?.type;
     let personId = loggedPerson.findIndex((user) => user.email === isLoggedIn[0]?.email || isLoggedIn?.email);
-    const users = useSelector((state) => state.employee[personType][personId].users);
-    
+    const allUsers = useSelector((state) => state.employee[personType][personId].users);
+    const [users, setUsers] = useState(allUsers);
+    useEffect(() => {
+        setUsers(allUsers);
+    }, [allUsers]);
     const handleDelete = (userId) => {
         dispatch(deleteUser({ personType, personId, userId }));
         setEditingRowId(null);
@@ -28,17 +30,12 @@ function UserList() {
         const rowToEdit = users.find((user) => user.id === userId);
         setEditedData(rowToEdit);
         setIsEditMode(true);
-      };
+    };
 
     return (
         <div className={styles.users}>
             <div className="container">
-                <div className={styles.users__box}>
-                    <button className={styles.users__sort}>Sort</button>
-                    <div className={sort ? styles.users__sort_enabled : styles.users__sort_disabled}></div>
-                    <button className={styles.users__filter}>Filter</button>
-                    <div className={sort ? styles.users__filter_enabled : styles.users__filter_disabled}></div>
-                </div>
+                <Filter allUsers={allUsers} users={users} setUsers={setUsers} />
                 <div className={styles.users__block}>
                     <table className={styles.users__table}>
                         <thead className={styles.users__thead}>

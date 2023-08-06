@@ -44,7 +44,6 @@ function AddUser({ active, setActive, editedData }) {
           if (editedData) {
             dispatch(editUser({ updatedUser: newUser, personType: personType, personId: personId, userId: editedData.id }));
           } else {
-            // Add user
             dispatch(addUser({ personType: personType, personId: personId, newUser }));
           }
     

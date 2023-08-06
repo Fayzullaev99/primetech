@@ -310,3 +310,71 @@
     color: #ff0000;
     border: 1px solid #c36161;
 }
+
+
+.filter__box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    position: relative;
+}
+.filter__box div{
+    display: flex;
+    gap: 20px;
+}
+.sort__btn,.filter__btn,.sort__az,.sort__za,.file__download{
+    padding: 6px 16px;
+    background: #0000ff;
+    color: #fff;
+    font-family: "Inter";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    border-radius: 4px;
+}
+.sort_disabled,.filter_disabled{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sort_enabled,.filter___enabled{
+    position: absolute;
+    top: 110%;
+    right: 0px;
+    height: 200px;
+    width: 300px;
+    border-radius: 12px;
+    background: #000000;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+.sort__close,.filter__close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #D2D2D7;
+    font-size: 24px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #000;
+    cursor: pointer;
+}
