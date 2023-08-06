@@ -5,7 +5,7 @@ import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
 import { useSelector } from 'react-redux'
 function App() {
-  const isLoggedIn = useSelector((state)=>state.employee.isLoggedIn)
+  const isLoggedIn = useSelector((state)=>state.employee.isLoggedIn.loggedIn)
   return (
     <BrowserRouter>
     <Routes>

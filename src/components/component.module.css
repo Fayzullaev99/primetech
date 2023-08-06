@@ -10,7 +10,8 @@
     align-items: center;
 }
 
-.header__brand, .footer__brand {
+.header__brand,
+.footer__brand {
     color: #ffffff;
     font-family: "Inter";
     font-size: 30px;
@@ -19,7 +20,8 @@
     line-height: normal;
 }
 
-.header__brand span, .footer__brand span {
+.header__brand span,
+.footer__brand span {
     color: #0000ff;
     font-family: "Inter";
     font-size: 30px;
@@ -37,7 +39,7 @@
 }
 
 .header__user,
-.header__add{
+.header__add {
     padding: 16px;
     border-radius: 12px;
     border: 1px solid #D2D2D7;
@@ -49,7 +51,8 @@
     background: #000;
     cursor: pointer;
 }
-.header__add span{
+
+.header__add span {
     text-align: center;
     font-family: "Inter";
     font-size: 20px;
@@ -106,7 +109,7 @@
     text-decoration: underline;
 }
 
-.header__addout {
+.header__signout {
     padding: 6px 16px;
     background: #0000ff;
     color: #fff;
@@ -118,7 +121,7 @@
     border-radius: 4px;
 }
 
-.footer{
+.footer {
     background: #000;
     padding: 12px;
     display: flex;
@@ -126,7 +129,8 @@
     justify-content: center;
     align-items: center;
 }
-.footer__text{
+
+.footer__text {
     color: #ffffff;
     font-family: "Inter";
     font-size: 20px;
@@ -139,14 +143,17 @@
 .add {
     display: none;
 }
-.add__active{
-    height: calc(100vh - 210px);
+
+.add__active {
+    height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: absolute;
+    top: 0px;
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .add__block {
@@ -156,6 +163,7 @@
     position: relative;
     border-radius: 12px;
 }
+
 .add__title {
     color: #eeeefa;
     font-family: "Inter";
@@ -165,7 +173,8 @@
     line-height: 32px;
     margin-bottom: 30px;
 }
-.add__close{
+
+.add__close {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -180,13 +189,17 @@
     background: #000;
     cursor: pointer;
 }
+
 .add__form {
     display: flex;
     flex-direction: column;
     gap: 16px;
     margin-bottom: 30px;
 }
-.add__form input{
+
+.add__form input,
+.add__form select,
+.add__form textarea {
     padding: 15px;
     border-radius: 4px;
     color: #000;
@@ -195,15 +208,22 @@
     font-style: normal;
     font-weight: 500;
     line-height: 26px;
+    resize: none;
 }
 
-.add__box{
+.add__form textarea {
+    height: 60px;
+}
+
+.add__box {
     display: flex;
     gap: 16px;
 }
-.add__box input{
+
+.add__box input {
     width: 100%;
 }
+
 .add__btn {
     padding: 6px 16px;
     background: #0000ff;
@@ -214,4 +234,79 @@
     font-weight: 500;
     line-height: 26px;
     border-radius: 4px;
+}
+
+
+.users {}
+
+.users__block {
+    height: calc(100vh - 205px);
+    overflow-y: auto;
+}
+
+.users__table {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.users__thead tr {
+    display: grid;
+    grid-template-columns: 0.2fr repeat(6, 1fr) 0.5fr 0.5fr;
+    color: #fff;
+}
+
+.users__tbody tr {
+    display: grid;
+    grid-template-columns: 0.2fr repeat(6, 1fr) 0.5fr 0.5fr;
+    color: #fff;
+}
+
+.users__thead th {
+    border-bottom: 3px solid #D2D2D7;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.users__tbody td {
+    border-bottom: 1px solid #D2D2D7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: auto;
+}
+
+.users__tbody td::-webkit-scrollbar {
+    height: 8px;
+}
+
+.users__tbody td::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 3px;
+}
+
+.users__tbody td::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.users__edit,
+.users__delete {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #D2D2D7;
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #000;
+    cursor: pointer;
+}
+
+.users__edit {
+    color: #0000ff;
+    border: 1px solid #4f4fda;
+}
+
+.users__delete {
+    color: #ff0000;
+    border: 1px solid #c36161;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { isValidEmail, isValidName, isValidPhoneNumber } from '../helpers';
+import { formatDate, isValidEmail, isValidName, isValidPhoneNumber } from '../helpers';
 import { addSimple, addAdmin, addSuper } from '../store/employee';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './pages.module.css'
@@ -33,7 +33,7 @@ function SignUp() {
         ...employee,
         deadline: null,
         users: [],
-        timestamp: new Date().toLocaleDateString(),
+        timestamp: formatDate(new Date(Date.now())),
       }
       if (employee.type === 'simple') {
         if (employees.some((user) => user.email === employee.email)) {
@@ -113,7 +113,7 @@ function SignUp() {
             <option value="admin">Admin</option>
             <option value="super">Super Admin</option>
           </select>
-          <button type='submit' className={styles.sign__submit}>Sign In</button>
+          <button type='submit' className={styles.sign__submit}>Sign Up</button>
         </form>
         <Link to="/signin" className={styles.sign__link}>Don't have an account? Sign In</Link>
       </div>
