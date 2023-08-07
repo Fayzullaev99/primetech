@@ -17,7 +17,7 @@ function Home({ loggedType }) {
           ) : loggedType === 'admin' ? (
             <EmployeeList />
           ) : (
-            <UserList />
+            <UserList loggedType={loggedType} />
           )}
 
         </div>

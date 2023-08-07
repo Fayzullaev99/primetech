@@ -66,6 +66,14 @@ table td::-webkit-scrollbar-thumb {
 table td::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
+.title{
+  color: #ffffff;
+  font-family: "Inter";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 .brand {
   color: #ffffff;
   font-family: "Inter";
@@ -84,7 +92,7 @@ table td::-webkit-scrollbar-track {
   line-height: 32px;
 }
 
-.editBtn,.deleteBtn {
+.editBtn,.deleteBtn, .downloadBtn {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #D2D2D7;
@@ -98,13 +106,18 @@ table td::-webkit-scrollbar-track {
 }
 
 .editBtn {
-  color: #0000ff;
-  border: 1px solid #4f4fda;
+  color: blue;
+  border: 1px solid blue;
 }
 
 .deleteBtn {
-  color: #ff0000;
-  border: 1px solid #c36161;
+  color: red;
+  border: 1px solid red;
+}
+
+.downloadBtn {
+  color: green;
+  border: 1px solid green;
 }
 
 .blueBtn {

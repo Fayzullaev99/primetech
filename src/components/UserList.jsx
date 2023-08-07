@@ -6,7 +6,7 @@ import AddUser from './AddUser';
 import { deleteUser } from '../store/employee';
 import Filter from './Filter';
 
-function UserList() {
+function UserList({loggedType}) {
     const dispatch = useDispatch();
     const [editingRowId, setEditingRowId] = useState(null);
     const [editedData, setEditedData] = useState(null);
@@ -35,7 +35,7 @@ function UserList() {
     return (
         <div className={styles.users}>
             <div className="container">
-                <Filter allUsers={allUsers} users={users} setUsers={setUsers} />
+                <Filter allUsers={allUsers} users={users} setUsers={setUsers} loggedType={loggedType} />
                 <div className={styles.users__block}>
                     <table className="table">
                         <thead className={styles.users__thead}>
@@ -55,8 +55,8 @@ function UserList() {
                             <tbody key={user.id} className={styles.users__tbody}>
                                 <tr>
                                     <td>{idx + 1}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.phoneNumber}</td>
+                                    <td>{user.firstname}</td>
+                                    <td>{user.phonenumber}</td>
                                     <td>{user.address}</td>
                                     <td>{user.timestamp}</td>
                                     <td>{user.state}</td>

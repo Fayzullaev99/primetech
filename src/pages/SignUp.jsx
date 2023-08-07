@@ -8,12 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './pages.module.css';
 
 const initialData = {
-  firstName: '',
-  lastName: '',
+  firstname: '',
+  lastname: '',
   email: '',
   password: '',
-  phoneNumber: '',
-  type: 'simple',
+  phonenumber: '',
+  position:"",
+  type: 'simple'
 };
 
 function SignUp() {
@@ -28,8 +29,8 @@ function SignUp() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const isValidInput = isValidEmail(employee.email) && isValidPhoneNumber(employee.phoneNumber)
-      && isValidName(employee.firstName) && isValidName(employee.lastName);
+    const isValidInput = isValidEmail(employee.email) && isValidPhoneNumber(employee.phonenumber)
+      && isValidName(employee.firstname) && isValidName(employee.lastname);
 
     if (isValidInput) {
       const newEmployee = {
@@ -76,16 +77,16 @@ function SignUp() {
             <input
               type="text"
               placeholder="First Name *"
-              name="firstName"
-              value={employee.firstName}
+              name="firstname"
+              value={employee.firstname}
               onChange={handleInputChange}
               required
             />
             <input
               type="text"
               placeholder="Last Name *"
-              name="lastName"
-              value={employee.lastName}
+              name="lastname"
+              value={employee.lastname}
               onChange={handleInputChange}
               required
             />
@@ -109,8 +110,8 @@ function SignUp() {
           <input
             type="text"
             placeholder="Phone Number *"
-            name="phoneNumber"
-            value={employee.phoneNumber}
+            name="phonenumber"
+            value={employee.phonenumber}
             onChange={handleInputChange}
             required
           />

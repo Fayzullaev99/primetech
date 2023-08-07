@@ -7,13 +7,13 @@ import styles from './component.module.css'
 import { formatDate, isValidEmail, isValidName, isValidPhoneNumber } from '../helpers';
 import { addUser, editUser } from '../store/employee';
 const initialData = {
-    name: "",
+    firstname: "",
     lastname: "",
     state: "nomalum",
     email: "",
     address: "",
-    phoneNumber: "",
-    text: ""
+    phonenumber: "",
+    reason: ""
 }
 function AddUser({ active, setActive, editedData }) {
     const [user, setUser] = useState(initialData);
@@ -33,7 +33,7 @@ function AddUser({ active, setActive, editedData }) {
     };
     const onSubmit = (e) => {
         e.preventDefault();
-        const isValid = isValidEmail(user.email) && isValidPhoneNumber(user.phoneNumber) && isValidName(user.name) && isValidName(user.lastname);
+        const isValid = isValidEmail(user.email) && isValidPhoneNumber(user.phonenumber) && isValidName(user.firstname) && isValidName(user.lastname);
         if (isValid) {
           let newUser = {
             id: new Date().getTime().toString(),
@@ -63,8 +63,8 @@ function AddUser({ active, setActive, editedData }) {
                         <input
                             type="text"
                             placeholder='First Name *'
-                            name='name'
-                            value={user.name}
+                            name='firstname'
+                            value={user.firstname}
                             onChange={handleInputChange}
                             required />
                         <input
@@ -96,9 +96,9 @@ function AddUser({ active, setActive, editedData }) {
                         />
                     </div>
                     {user.state === 'uchrashuv'
-                        ? (<textarea name='text' value={user.text} placeholder="Aniq Manzil Kiriting" onChange={handleInputChange} required></textarea>)
+                        ? (<textarea name='reason' value={user.reason} placeholder="Aniq Manzil Kiriting" onChange={handleInputChange} required></textarea>)
                         : user.state === 'rad'
-                        && (<textarea name='text' value={user.text} placeholder="Sabab Kiriting" onChange={handleInputChange} required></textarea>)}
+                        && (<textarea name='reason' value={user.reason} placeholder="Sabab Kiriting" onChange={handleInputChange} required></textarea>)}
                     <input
                         type="text"
                         placeholder='Email Address *'
@@ -109,8 +109,8 @@ function AddUser({ active, setActive, editedData }) {
                     <input
                         type="text"
                         placeholder='Phone Number *'
-                        name='phoneNumber'
-                        value={user.phoneNumber}
+                        name='phonenumber'
+                        value={user.phonenumber}
                         onChange={handleInputChange}
                         required />
                     <button type='submit' className="blueBtn">{editedData ? 'Save Changes' : 'Add User'}</button>

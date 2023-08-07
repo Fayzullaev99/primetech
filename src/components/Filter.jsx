@@ -1,14 +1,15 @@
 import React from 'react'
-import * as XLSX from 'xlsx'
+import { downloadExcel } from '../helpers';
 import styles from './component.module.css'
 
-function Filter({ users, setUsers, allUsers }) {
+function Filter({ users, setUsers, allUsers, loggedType }) {
+    console.log(loggedType);
     function sortAscending(arr) {
-        let sortedAZ = arr.slice().sort((a, b) => a.name.localeCompare(b.name));
+        let sortedAZ = arr.slice().sort((a, b) => a.firstName.localeCompare(b.firstName));
         setUsers(sortedAZ)
     }
     function sortDescending(arr) {
-        let sortedZA = arr.slice().sort((a, b) => b.name.localeCompare(a.name));
+        let sortedZA = arr.slice().sort((a, b) => b.firstName.localeCompare(a.firstName));
         setUsers(sortedZA)
     }
     const parseDateString = (dateString) => {
@@ -63,39 +64,17 @@ function Filter({ users, setUsers, allUsers }) {
         });
         setUsers(filteredUsers);
     };
-    const downloadExcel  = () => {
-        const data = users.map((user) => ({
-          Ism: user.name,
-          Familya: user.lastname,
-          Email: user.email,
-          Manzil: user.address,
-          Telefon: user.phoneNumber,
-          Holat: user.state,
-          Sabab: user.text,
-          Vaqt: user.timestamp,
-        }));
-    
-        const worksheet = XLSX.utils.json_to_sheet(data);
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-    
-        const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-        const excelBlob = new Blob([excelBuffer], {
-          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    const filterBySimple = () => {
+        let filteredUsers = allUsers.filter((item) => {
+            return item.type === 'simple'
         });
-    
-        const excelFileName = 'user_data.xlsx';
-        if (navigator.msSaveBlob) {
-          navigator.msSaveBlob(excelBlob, excelFileName);
-        } else {
-          const excelFileUrl = URL.createObjectURL(excelBlob);
-          const downloadLink = document.createElement('a');
-          downloadLink.href = excelFileUrl;
-          downloadLink.download = excelFileName;
-          document.body.appendChild(downloadLink);
-          downloadLink.click();
-          document.body.removeChild(downloadLink);
-        }
+        setUsers(filteredUsers);
+    };
+    const filterByAdmin = () => {
+        let filteredUsers = allUsers.filter((item) => {
+            return item.type === 'admin'
+        });
+        setUsers(filteredUsers);
     };
     return (
         <div className={styles.filter}>
@@ -107,12 +86,22 @@ function Filter({ users, setUsers, allUsers }) {
                         <button className="blueBtn" onClick={() => filterByDay(new Date().getDate(), new Date().getMonth(), new Date().getFullYear())}>Daily</button>
                         <button className="blueBtn" onClick={() => filterByMonth(new Date().getMonth(), new Date().getFullYear())}>Monthly</button>
                         <button className="blueBtn" onClick={() => filterByYear(new Date().getFullYear())}>Yearly</button>
-                        <button className="blueBtn" onClick={() => filterBySell()}>Sell</button>
-                        <button className="blueBtn" onClick={() => filterByMeet()}>Meet</button>
-                        <button className="blueBtn" onClick={() => filterByIgnore()}>Ignore</button>
+                        {loggedType === "simple" && (
+                            <>
+                                <button className="blueBtn" onClick={() => filterBySell()}>Sell</button>
+                                <button className="blueBtn" onClick={() => filterByMeet()}>Meet</button>
+                                <button className="blueBtn" onClick={() => filterByIgnore()}>Ignore</button>
+                            </>
+                        )}
+                        {loggedType === "super" && (
+                            <>
+                                <button className="blueBtn" onClick={() => filterBySimple()}>Simple</button>
+                                <button className="blueBtn" onClick={() => filterByAdmin()}>Admins</button>
+                            </>
+                        )}
                     </div>
                     <div>
-                        <button className="blueBtn" onClick={() => downloadExcel()}>Download</button>
+                        <button className="blueBtn" onClick={() => downloadExcel(users)}>Download</button>
                     </div>
                 </div>
             </div>

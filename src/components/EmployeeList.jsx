@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { FaPen } from 'react-icons/fa';
+import * as XLSX from 'xlsx'
+import {useSelector } from 'react-redux';
+import { FaDownload, FaPen } from 'react-icons/fa';
 import Filter from './Filter'
 import styles from './component.module.css'
+import EditEmployee from './EditEmployee';
+import { downloadExcel } from '../helpers';
 
 function EmployeeList() {
     const [editingRowId, setEditingRowId] = useState(null);
     const [editedData, setEditedData] = useState(null);
     const [isEditMode, setIsEditMode] = useState(false);
-    const isLoggedIn = useSelector((state) => state.employee.isLoggedIn);
-    // const loggedPerson = useSelector((state) => state.employee[isLoggedIn[0]?.type || isLoggedIn?.type]);
     const allEmployees = useSelector((state) => state.employee.simple);
     const [employees, setEmployees] = useState(allEmployees);
     useEffect(() => {
@@ -21,7 +22,6 @@ function EmployeeList() {
         setEditedData(rowToEdit);
         setIsEditMode(true);
     };
-    console.log(allEmployees);
     return (
         <div className={styles.employees}>
             <div className="container">
@@ -40,14 +40,15 @@ function EmployeeList() {
                                 <th>Meet</th>
                                 <th>Cancel</th>
                                 <th>Edit</th>
+                                <th>Download</th>
                             </tr>
                         </thead>
                         {employees.map((employee, idx) => (
                             <tbody key={employee.id} className={styles.employees__tbody}>
                                 <tr>
                                     <td>{idx + 1}</td>
-                                    <td>{employee.name}</td>
-                                    <td>{employee.phoneNumber}</td>
+                                    <td>{employee.firstName}</td>
+                                    <td>{employee.phonenumber}</td>
                                     <td>{employee.email}</td>
                                     <td>{employee.timestamp}</td>
                                     <td>{employee.deadline}</td>
@@ -57,12 +58,16 @@ function EmployeeList() {
                                     <td>
                                         <button onClick={() => handleEdit(employee.id)} className="editBtn"><FaPen /></button>
                                     </td>
+                                    <td>
+                                        <button onClick={() => downloadExcel(employee)} className="downloadBtn"><FaDownload /></button>
+                                    </td>
                                 </tr>
                             </tbody>
                         ))}
                     </table>
                 </div>
             </div>
+            <EditEmployee active={isEditMode} setActive={setIsEditMode} editedData={editedData} />
         </div>
     )
 }
