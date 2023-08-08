@@ -3,13 +3,12 @@ import { downloadExcel } from '../helpers';
 import styles from './component.module.css'
 
 function Filter({ users, setUsers, allUsers, loggedType }) {
-    console.log(loggedType);
     function sortAscending(arr) {
-        let sortedAZ = arr.slice().sort((a, b) => a.firstName.localeCompare(b.firstName));
+        let sortedAZ = arr.slice().sort((a, b) => a.firstname.localeCompare(b.firstname));
         setUsers(sortedAZ)
     }
     function sortDescending(arr) {
-        let sortedZA = arr.slice().sort((a, b) => b.firstName.localeCompare(a.firstName));
+        let sortedZA = arr.slice().sort((a, b) => b.firstname.localeCompare(a.firstname));
         setUsers(sortedZA)
     }
     const parseDateString = (dateString) => {
@@ -64,18 +63,6 @@ function Filter({ users, setUsers, allUsers, loggedType }) {
         });
         setUsers(filteredUsers);
     };
-    const filterBySimple = () => {
-        let filteredUsers = allUsers.filter((item) => {
-            return item.type === 'simple'
-        });
-        setUsers(filteredUsers);
-    };
-    const filterByAdmin = () => {
-        let filteredUsers = allUsers.filter((item) => {
-            return item.type === 'admin'
-        });
-        setUsers(filteredUsers);
-    };
     return (
         <div className={styles.filter}>
             <div className='container'>
@@ -91,12 +78,6 @@ function Filter({ users, setUsers, allUsers, loggedType }) {
                                 <button className="blueBtn" onClick={() => filterBySell()}>Sell</button>
                                 <button className="blueBtn" onClick={() => filterByMeet()}>Meet</button>
                                 <button className="blueBtn" onClick={() => filterByIgnore()}>Ignore</button>
-                            </>
-                        )}
-                        {loggedType === "super" && (
-                            <>
-                                <button className="blueBtn" onClick={() => filterBySimple()}>Simple</button>
-                                <button className="blueBtn" onClick={() => filterByAdmin()}>Admins</button>
                             </>
                         )}
                     </div>

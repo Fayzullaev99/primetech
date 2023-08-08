@@ -20,7 +20,7 @@ function AddUser({ active, setActive, editedData }) {
     const isLoggedIn = useSelector((state) => state.employee.isLoggedIn);
     const loggedPerson = useSelector((state) => state.employee[isLoggedIn[0]?.type || isLoggedIn?.type]);
     let personType = loggedPerson.filter((user) => user.type === isLoggedIn[0]?.type || isLoggedIn?.type)[0]?.type;
-    let personId = loggedPerson.findIndex((user) => user.email === isLoggedIn[0]?.email || isLoggedIn?.email);
+    let personId = loggedPerson.findIndex((user) => user.id === isLoggedIn[0]?.id || isLoggedIn?.id);
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -40,9 +40,8 @@ function AddUser({ active, setActive, editedData }) {
             ...user,
             timestamp: formatDate(new Date(Date.now())),
           };
-    
           if (editedData) {
-            dispatch(editUser({ updatedUser: newUser, personType: personType, personId: personId, userId: editedData.id }));
+            dispatch(editUser({ updatedUser: newUser, personId: personId, userId: editedData.id }));
           } else {
             dispatch(addUser({ personType: personType, personId: personId, newUser }));
           }

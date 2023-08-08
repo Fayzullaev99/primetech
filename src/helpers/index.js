@@ -11,8 +11,7 @@ export const isValidPhoneNumber = (phoneNumber) => {
 export const isValidName = (name) => name.length > 2
 
 export const downloadExcel = (el) => {
-    let users = el.users ? el.users : el
-    const data = users.map((user) => ({
+    let data = el?.users?.length > 0 ? el.users : el.length > 0 ? el.map((user) => ({
         Ism: user.firstname,
         Familya: user.lastname,
         Email: user.email,
@@ -23,8 +22,18 @@ export const downloadExcel = (el) => {
         Vaqt: user.timestamp,
         Deadline: user?.deadline,
         Daraja: user?.position
-    }));
-
+    })) : [{
+        Ism: el.firstname,
+        Familya: el.lastname,
+        Email: el.email,
+        Manzil: el.address,
+        Telefon: el.phonenumber,
+        Holat: el.state,
+        Sabab: el.text,
+        Vaqt: el.timestamp,
+        Deadline: el?.deadline,
+        Daraja: el?.position
+    }]
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');

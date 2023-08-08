@@ -3,7 +3,7 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './component.module.css'
 import AddUser from './AddUser';
-import { deleteUser } from '../store/employee';
+import { deleteSimple, deleteUser } from '../store/employee';
 import Filter from './Filter';
 
 function UserList({loggedType}) {
@@ -14,7 +14,7 @@ function UserList({loggedType}) {
     const isLoggedIn = useSelector((state) => state.employee.isLoggedIn);
     const loggedPerson = useSelector((state) => state.employee[isLoggedIn[0]?.type || isLoggedIn?.type]);
     let personType = loggedPerson.filter((user) => user.type === isLoggedIn[0]?.type || isLoggedIn?.type)[0]?.type;
-    let personId = loggedPerson.findIndex((user) => user.email === isLoggedIn[0]?.email || isLoggedIn?.email);
+    let personId = loggedPerson.findIndex((user) => user.email === isLoggedIn[0]?.id || isLoggedIn?.id);
     const allUsers = useSelector((state) => state.employee[personType][personId].users);
     const [users, setUsers] = useState(allUsers);
     useEffect(() => {
@@ -60,7 +60,7 @@ function UserList({loggedType}) {
                                     <td>{user.address}</td>
                                     <td>{user.timestamp}</td>
                                     <td>{user.state}</td>
-                                    <td>{user.text}</td>
+                                    <td>{user.reason}</td>
                                     <td>
                                         <button onClick={() => handleEdit(user.id)} className="editBtn"><FaPen /></button>
                                     </td>

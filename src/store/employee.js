@@ -37,14 +37,12 @@ export const employeeSlice = createSlice({
       saveToLocalStorage({...state})
     },
     editUser: (state, action) => {
-      const { updatedUser, personType, personId, userId } = action.payload;
-
-      const userIndex = state[personType][personId].users.findIndex((user) => user.id === userId);
+      const { updatedUser, personId, userId } = action.payload;
+      const userIndex = state.simple[personId].users.findIndex((user) => user.id === userId);
       if (userIndex !== -1) {
-        const updatedUsers = [...state[personType][personId].users];
+        const updatedUsers = [...state.simple[personId].users];
         updatedUsers[userIndex] = { ...updatedUsers[userIndex], ...updatedUser };
-
-        state[personType][personId].users = updatedUsers;
+        state.simple[personId].users = updatedUsers;
         saveToLocalStorage(state);
       }
     },
@@ -58,6 +56,14 @@ export const employeeSlice = createSlice({
         saveToLocalStorage(state);
       }
     },
+    deleteSimple: (state, action) => {
+      const { personType, userId } = action.payload;
+      const updatedUsers = state[personType].filter(
+        (user) => user.id !== userId
+      );
+      state[personType] = updatedUsers;
+      saveToLocalStorage(state);
+    },
     deleteUser: (state, action) => {
       const { personType, personId, userId } = action.payload;
       const updatedUsers = state[personType][personId].users.filter(
@@ -66,9 +72,28 @@ export const employeeSlice = createSlice({
       state[personType][personId].users = updatedUsers;
       saveToLocalStorage(state);
     },
+    deleteAdmin: (state, action) => {
+      const { personType, userId } = action.payload;
+      const updatedUsers = state[personType].filter(
+        (user) => user.id !== userId
+      );
+      state[personType] = updatedUsers;
+      saveToLocalStorage(state);
+    },
   },
 })
 
-export const { addSimple, addAdmin, addSuper, signOut, signIn, addUser, editUser, deleteUser,editEmployee, } = employeeSlice.actions
+export const { 
+  addSimple, 
+  addAdmin, 
+  addSuper, 
+  signOut, 
+  signIn, 
+  addUser, 
+  editUser, 
+  deleteSimple, 
+  editEmployee, 
+  deleteAdmin, 
+  deleteUser,} = employeeSlice.actions
 
 export default employeeSlice.reducer

@@ -9,7 +9,7 @@ import EmployeeList from '../components/EmployeeList'
 function Home({ loggedType }) {
   return (
     <>
-      <NavBar />
+      <NavBar loggedType={loggedType} />
       <main>
         <div className={styles.page}>
           {loggedType === 'super' ? (

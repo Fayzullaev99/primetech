@@ -47,10 +47,11 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: absolute;
+    position: fixed;
     top: 0px;
     background: rgba(0, 0, 0, 0.8);
     z-index: 10;
+    overflow: hidden;
 }
 .add__block {
     width: 450px;
@@ -65,6 +66,7 @@
 .users__block,.employees__block {
     height: calc(100vh - 205px);
     overflow-y: auto;
+    margin-top: 30px;
 }
 .users__thead tr {
     display: grid;
@@ -86,16 +88,17 @@
 .list__block{
     max-height: calc(100vh - 205px);
     overflow-y: auto;
+    margin-top: 30px;
 }
 .list__thead tr {
     display: grid;
-    grid-template-columns: 0.2fr 0.4fr 0.4fr 0.5fr 0.5fr 0.5fr 0.6fr 0.6fr 0.6fr 0.7fr 0.7fr 0.3fr 0.3fr 0.3fr ;
+    grid-template-columns: 0.2fr 0.5fr 0.5fr 1fr 0.6fr 0.6fr 0.6fr 0.7fr 0.7fr 0.3fr 0.3fr;
     color: #fff;
 }
 
 .list__tbody tr {
     display: grid;
-    grid-template-columns: 0.2fr 0.4fr 0.4fr 0.5fr 0.5fr 0.5fr 0.6fr 0.6fr 0.6fr 0.7fr 0.7fr 0.3fr 0.3fr 0.3fr ;
+    grid-template-columns: 0.2fr  0.5fr 0.5fr 1fr 0.6fr 0.6fr 0.6fr 0.7fr 0.7fr 0.3fr 0.3fr;
     color: #fff;
 }
 .list__thead tr th,

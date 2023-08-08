@@ -19,7 +19,7 @@ function EditEmployee({ active, setActive, editedData }) {
     return (
         <div className={active ? styles.add__active : styles.add}>
             <div className={styles.add__block}>
-                <h2 className="form__title">Employee Info</h2>
+                <h2 className="form__title">Deadline</h2>
                 <button className="closeBtn" onClick={() => setActive(false)}><MdClear /></button>
                 <form onSubmit={onSubmit} className="form">
                         <input

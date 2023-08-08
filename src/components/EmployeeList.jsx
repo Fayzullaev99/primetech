@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import * as XLSX from 'xlsx'
 import {useSelector } from 'react-redux';
 import { FaDownload, FaPen } from 'react-icons/fa';
 import Filter from './Filter'
@@ -47,7 +46,7 @@ function EmployeeList() {
                             <tbody key={employee.id} className={styles.employees__tbody}>
                                 <tr>
                                     <td>{idx + 1}</td>
-                                    <td>{employee.firstName}</td>
+                                    <td>{employee.firstname}</td>
                                     <td>{employee.phonenumber}</td>
                                     <td>{employee.email}</td>
                                     <td>{employee.timestamp}</td>
